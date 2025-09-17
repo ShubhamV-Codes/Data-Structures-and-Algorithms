@@ -40,24 +40,43 @@ Node* buildBST(int arr[], int n){
 
            //  INORDER TRAVERSAL
 
-void inorder(Node* root){
+void inOrder(Node* root){
     if(root == NULL) return;
-    inorder(root->left);
+    inOrder(root->left);
     cout << root->data << " ";
-    inorder(root->right);
+    inOrder(root->right);
 }
 
-            //  SEARCH IN BST
+        // PREORDER TRAVERSAL
+
+void preOrder(Node* root){
+    if(root == NULL) return;
+     cout << root->data << " ";
+    preOrder(root->left);
+    preOrder(root->right);
+}        
+
+        // POSTORDER TRAVERSAL
+  
+void postOrder(Node* root){
+    if(root == NULL) return;
+    postOrder(root->left);
+    postOrder(root->right);
+    cout << root->data << " ";
+}       
+
+//  SEARCH IN BST
 
 bool search(Node*root, int key){
     if(root==NULL)return false;
-if(root->data==key)return true;
-else if(root->data > key){
-    return search(root->left, key);
+    if(root->data==key)return true;
+    else if(root->data > key){
+        return search(root->left, key);
+    }
+    else{
+        return search(root->right, key);
+    }
 }
-else{
-    return search(root->right, key);
-}}
 
 
           // PRINT IN RANGE
@@ -112,22 +131,77 @@ bool isValidBST(Node*root){
     return validateBST(root, NULL, NULL);
 }
 
+            // Build BST From Sorted Array (With Min. Height)
+
+
+Node* buildBSTfromSorted(int arr[],int st, int end ){
+    if(st>end){
+        return NULL;
+    }
+    int mid = st+(end-st)/2;
+    Node* curr= new Node (arr[mid]);
+    curr->left=buildBSTfromSorted(arr, st, mid-1);
+    curr->right=buildBSTfromSorted(arr,mid+1,end);
+    return curr;
+}
+
+             // CONVERT BST INTO BALANCED BST
+    void getInOrder(Node*root, vector<int>& nodes){
+        if(root==NULL)return ;
+        getInOrder(root->left, nodes);
+        nodes.push_back(root->data);
+        getInOrder(root->right, nodes);
+    }
+    Node* BSTfromSortedVector(const vector<int>& arr, int st, int end){
+        if(st>end){
+            return NULL;
+        }
+        int mid=st+(end-st)/2;
+        Node*curr = new Node(arr[mid]);
+        curr->left=BSTfromSortedVector(arr,st,mid-1);
+        curr->right=BSTfromSortedVector(arr,mid+1,end);
+        return curr;
+    }
+    Node* BalancedBST(Node* root){
+        vector<int>nodes;
+        getInOrder(root, nodes);
+        return BSTfromSortedVector(nodes, 0, nodes.size()-1);
+    }         
+             
+
+
         // MAIN FUNCTION
 
 int main(){
-    int arr[] = {5, 1, 3, 4, 2, 7};
+    int arr[] = {3,4,5,6,7,8,9};
     int n = sizeof(arr) / sizeof(arr[0]);
-    Node* root = buildBST(arr, n);
-    // printInRange(root, 2, 5);
-    // cout << endl;
-
-    // rootToLeafPath(root);
-  
-    if(isValidBST(root)){
-        cout<<"Valid BST"<<endl;
-    }
-    else{
-        cout<<"Not a Valid BST"<<endl;
-    }
     
-}   
+   Node*root= buildBSTfromSorted(arr,0,n-1);
+
+// Node * root = new Node(6);
+// root->left =new Node(5);
+// root->left->left = new Node(4);
+// root->left->left->left=new Node(3);
+
+// root->right = new Node(7);
+// root->right->right= new Node(8);
+// root->right->right->right=new Node(9);
+
+//   root= BalancedBST(root);
+ cout<<" PreOrder :  ";
+   preOrder(root);
+   cout<<endl;
+   cout<<" InOrder :   ";
+   inOrder(root);
+   cout<<endl;
+   cout<<" PostOrder : ";
+postOrder(root);
+   cout<<endl;
+    
+    return 0;
+} 
+/*
+If you see 'M' next to bst.cpp in git status, it means the file has been modified but not yet committed. To update git, use:
+    git add bst.cpp
+    git commit -m "Update bst.cpp"
+*/
