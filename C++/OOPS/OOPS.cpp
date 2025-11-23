@@ -1,43 +1,4 @@
-// #include <iostream>
-// #include<string>
-// using namespace std ;
-// class Animal  {
-//     public:
-//     void eat(){
-//         cout<<" Eat \n" ;
 
-//     }
-//     void sleep(){
-//         cout<<" Sleep \n";
-//     }
-// };
-// class Man : public Animal {
-//     public :
-//     void gym(){
-//         cout<<" Man do GYM \n";
-
-//     }
-
-// };
-// class Woman : public Animal {
-//     public :
-//     void study(){
-//         cout<<" Women do Study \n";
-
-//     }
-
-// };
-// int main()
-// {
-//     Man M1 ;
-//     Woman W1;
-//     M1.eat();
-
-//     M1.gym();
-//     W1.sleep();
-//     W1.study();
-
-// }
 
 #include <iostream>
 #include <string>
@@ -48,8 +9,6 @@ int func(int arr[], int i, int key)
     {
         return -1 ;
     }
-
-    
 
     if (arr[i] = key)
     {

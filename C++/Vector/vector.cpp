@@ -1,3 +1,7 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
 int main(){
      int row, col;
      cout << ("Enter Row Number : ") << endl ;
@@ -17,7 +21,5 @@ int main(){
         }
         cout << endl ;
      }
-     cout<<matrix[2][2] << endl ;
-     cout<<*(*(matrix+2)+2) <<endl ;
      return 0 ;
 }
