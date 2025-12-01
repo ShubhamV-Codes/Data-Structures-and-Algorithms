@@ -44,23 +44,38 @@ class Graph{
         }
     }
     void dfs (){
-        vector<bool> vis(7, false);
-        dfshelper( 0,vis);
+        vector<bool> vis(v, false);
+        for(int i=0;i<v;i++){
+            if(!vis[i]){
+                dfshelper( i,vis);
+            }
+        }
+       
         cout<<endl;
     }
 
 };
 
 int main (){
-    Graph Graph(7);
-    Graph.addEdge(0,1);
+    Graph Graph(10);
     Graph.addEdge(0,2);
-    Graph.addEdge(1,3);
-    Graph.addEdge(2,4);
-    Graph.addEdge(3,4);
-    Graph.addEdge(3,5);
-    Graph.addEdge(4,5);
-    Graph.addEdge(5,6);    
+    Graph.addEdge(2,0);
+    Graph.addEdge(2,5);
+    Graph.addEdge(5,2);
+    Graph.addEdge(1,6);
+    Graph.addEdge(6,1);
+    Graph.addEdge(6,4);
+    Graph.addEdge(4,6); 
+    Graph.addEdge(4,3); 
+    Graph.addEdge(3,4); 
+    Graph.addEdge(4,9);    
+    Graph.addEdge(9,4); 
+    Graph.addEdge(3,8); 
+    Graph.addEdge(8,3); 
+    Graph.addEdge(3,7); 
+    Graph.addEdge(7,3); 
+
+
 
     Graph.dfs();
     return 0;
