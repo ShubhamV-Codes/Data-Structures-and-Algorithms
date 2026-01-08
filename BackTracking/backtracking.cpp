@@ -7,7 +7,7 @@
 //         cout << arr[i] << " ";
 //     }
 //     cout << endl;
-// }
+// }  
 // void changeArr(int arr[], int n, int i)
 // {
 //     if (i == n)
