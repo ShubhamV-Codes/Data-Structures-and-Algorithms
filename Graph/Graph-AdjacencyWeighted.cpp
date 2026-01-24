@@ -5,25 +5,26 @@ using namespace std;
 
 class Graph{
     int v;
-    list<pair<int,int>>*l;
+    vector<vector<pair<int, int>>> adj;
     public:
+
 
     Graph(int v ){
         this->v = v;
-        l = new list <pair<int,int>>[v];     
+        adj.resize(v);
     }
 
     void addEdge(int u , int v, int w){
-        l[u].push_back({v,w});
-        l[v].push_back({u,w});
+        adj[u].push_back({v,w});
+        adj[v].push_back({u,w});
 
 
     }
     void print() {
         for (int i = 0; i < v; i++) {
             cout << i << ": ";
-            for (auto nbr : l[i]) {
-                cout <<"(" << nbr.first << ","<< nbr.second<< ") ";
+            for (auto &p : adj[i]) {
+                cout <<"(" << p.first << ","<< p.second<< ") ";
             }
             cout << endl;
         }
