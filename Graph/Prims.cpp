@@ -41,7 +41,7 @@ public:
                 }
             }
         }
-        cout<<"Final Cost of the MST is " << ans << endl;
+        cout<<"Final Cost of the MST is : " << ans << endl;
     }
 };
 
