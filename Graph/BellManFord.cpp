@@ -12,14 +12,14 @@ class Edge {
     }
 };
 
-void bellManFord(vector<vector<Edge>>graph , int V, int src){
+void bellManFord(vector<vector<Edge>> & graph , int V, int src){
     vector<int>dist(V,INT_MAX);
     dist[src] = 0;
 
     for(int i=0;i<V-1;i++){
         for(int u=0;u<V;u++){
             for(Edge e : graph[u]){
-                if(dist[e.v] > dist[u]+e.wt){
+                if(dist[u] != INT_MAX && dist[e.v] > dist[u]+e.wt){
                     dist[e.v] = dist[u]+e.wt ;
                 }
             }
@@ -42,6 +42,9 @@ int main(){
     graph[2].push_back(Edge(3,2));
     graph[3].push_back(Edge(4,4));
     graph[4].push_back(Edge(1,-1));
+    graph[4].push_back(Edge(0,-4));
+
+    
 
     bellManFord(graph, 5, 0);
     return 0;
